@@ -36,13 +36,13 @@ function preload(){
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
-  trex = createSprite(50,height-400,20,50);
+  trex = createSprite(50,height-350,20,50);
   
   trex.addAnimation("running", trex_correndo);
   trex.addAnimation("collided", trex_colidiu);
   trex.scale = 0.5;
   
-  solo = createSprite(200,180,400,20);
+  solo = createSprite(200,height/2,400,20);
   solo.addImage("ground",imagemDoSolo);
   solo.x = solo.width /2;
   solo.velocityX = -(6 + 3*pontuacao/100);
@@ -59,7 +59,7 @@ function setup() {
   fimDeJogo.visible = false;
   reiniciar.visible = false;
   
-  soloInvisivel = createSprite(200,190,400,10);
+  soloInvisivel = createSprite(200,height/2,400,10);
   soloInvisivel.visible = false;
   
   grupoDeNuvens = new Group();
@@ -77,7 +77,7 @@ function draw() {
     pontuacao = pontuacao + Math.round(getFrameRate()/60);
     solo.velocityX = -(6 + 3*pontuacao/100);
   
-    if((touches.lenght > 0 || keyDown("space")) && trex.y >= 159) {
+    if((touches.lenght > 0 || keyDown("space")) && trex.y >= 300) {
       trex.velocityY = -12;
       touches = [];
     }
@@ -146,7 +146,7 @@ function gerarNuvens() {
 
 function gerarObstaculos() {
   if(frameCount % 60 === 0) {
-    var obstaculo = createSprite(600,165,10,40);
+    var obstaculo = createSprite(600,height-350,10,40);
     //obstaculo.debug = true;
     obstaculo.velocityX = -(6 + 3*pontuacao/100);
     
